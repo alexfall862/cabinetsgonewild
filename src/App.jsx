@@ -94,24 +94,37 @@ function Hero() {
             <p className="small" style={{ marginTop: 8 }}>*Time is a flat door. Terms of Endless Love™ apply.</p>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
-            <div className="card" style={{ overflow: "hidden" }}>
-              <div className="grid" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
-                {Array.from({ length: 9 }).map((_, i) => (
-                  <div key={i} style={{ aspectRatio: "16/9", position: "relative", background: "linear-gradient(135deg,#f1f5f9,#e2e8f0)" }}>
-                    <div style={{ position: "absolute", inset: 0, display: "grid", placeItems: "center", color: "#334155", textAlign: "center" }}>
-                      <Clapperboard size={24} />
-                      <div className="small" style={{ marginTop: 4 }}>Cabinet Clip {i + 1}</div>
-                    </div>
+          <div className="card" style={{ overflow: "hidden" }}>
+            <div className="grid" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
+              {Array.from({ length: 9 }).map((_, i) => (
+                <div key={i} style={{ aspectRatio: "16/9", position: "relative" }}>
+                  <picture>
+                    <source srcSet={thumbs[i]} type="image/avif" />
+                    <img
+                      src={thumbs[i]}
+                      alt={`Cabinet Clip ${i + 1}`}
+                      loading="lazy"
+                      decoding="async"
+                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", border: 0 }}
+                    />
+                  </picture>
+
+                  <div style={{
+                    position: "absolute", inset: 0,
+                    background: "linear-gradient(0deg, rgba(15,23,42,.35), rgba(0,0,0,0))"
+                  }} />
+
+                  <div style={{
+                    position: "absolute", inset: 0, display: "grid",
+                    placeItems: "end center", color: "white", paddingBottom: 8, textAlign: "center"
+                  }}>
+                    <div className="small">Cabinet Clip {i + 1}</div>
                   </div>
-                ))}
-              </div>
-              <div style={{ borderTop: "1px solid var(--border)", padding: "12px 16px", display: "flex", alignItems: "center", justifyContent: "space-between", color: "#475569", fontSize: 14 }}>
-                <div className="kv"><Clock size={16} /> Live: 24/7 Hinge‑Cam</div>
-                <div className="kv"><Wrench size={16} /> Workshop Mode</div>
-              </div>
+                </div>
+              ))}
             </div>
-          </motion.div>
+          </div>
+
         </div>
       </div>
 
@@ -210,7 +223,7 @@ function Pricing() {
 
 function CatalogTabs() {
   const [tab, setTab] = useState("catalog");
-  const titles = ["Soft‑Close: The Musical","Drawers, Openly","The Plywood Identity","Cabinet Noir","Handle With Care","Shelf Discovery"];
+  const titles = ["Soft‑Close: The Musical", "Drawers, Openly", "The Plywood Identity", "Cabinet Noir", "Handle With Care", "Shelf Discovery"];
   return (
     <section className="section">
       <div className="container">
