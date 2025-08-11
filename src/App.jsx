@@ -2,6 +2,13 @@ import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { DoorOpen, Clapperboard, Clock, Wrench, Video, XCircle, Shield, Check, Crown, Zap, Lock, Play } from "lucide-react";
 
+const thumbModules = import.meta.glob("./assets/thumbs/*.{jpg,jpeg,png,webp,avif}", {
+  eager: true,
+  as: "url",
+});
+const thumbs = Object.values(thumbModules).slice(0, 9); // take first 9
+
+
 const tiers = [
   {
     name: "Drawer Tease",
